@@ -35,7 +35,9 @@ public class WebServiceGestionUsuario {
      */
     @WebMethod(operationName = "servicioDeRegistro")
     public String servicioDeRegistro(@WebParam(name = "doc") int doc, @WebParam(name = "nombre") String nombre, @WebParam(name = "apellido") String apellido, @WebParam(name = "nivel") int nivel, @WebParam(name = "pass") String pass) {
-        //TODO write your implementation code here:
-        return null;
+        Usuario nuevo = new Usuario(doc, nombre, apellido, pass, nivel);
+        Gestor g = new Gestor();
+        String mensaje = g.addUsuario(nuevo);
+        return mensaje;
     }
 }

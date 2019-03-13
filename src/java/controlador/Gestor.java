@@ -93,7 +93,7 @@ public class Gestor {
         return nuevo; 
     }
     
-     public String addUsuario(int dni,String nombre,String apellido,int nivelID,String pass)
+     public String addUsuario(Usuario u)
      {
          
         String mensaje = "No se pudo registrar el usuario.";
@@ -104,11 +104,11 @@ public class Gestor {
             String q = "INSERT INTO USUARIOS VALUES (?,?,?,?,?)";
             pstm = con.prepareStatement(q);
             
-            pstm.setInt(1, dni);
-            pstm.setString(2,nombre);
-            pstm.setString(3,apellido);
-            pstm.setInt(4,nivelID);
-            pstm.setString(5,pass);
+            pstm.setInt(1, u.getDni());
+            pstm.setString(2,u.getNombre());
+            pstm.setString(3,u.getApellido());
+            pstm.setInt(4,u.getNivel());
+            pstm.setString(5,u.getPass());
             
             int resultado = pstm.executeUpdate();
             
