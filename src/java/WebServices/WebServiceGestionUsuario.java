@@ -5,6 +5,7 @@
  */
 package WebServices;
 
+import controlador.Gestor;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -21,8 +22,11 @@ public class WebServiceGestionUsuario {
      * Web service operation
      */
     @WebMethod(operationName = "ValidarLogin")
-    public Usuario ValidarLogin(@WebParam(name = "dni") int dni, @WebParam(name = "nivelID") int nivelID, @WebParam(name = "pass") String pass) {
-        //TODO write your implementation code here:
-        return null;
+    public Usuario ValidarLogin(@WebParam(name = "dni") int dni, @WebParam(name = "nivelID") int nivelID) {
+       
+        Gestor g = new Gestor();
+        Usuario nuevo = g.getUsuario(dni, nivelID);
+        
+        return nuevo;
     }
 }

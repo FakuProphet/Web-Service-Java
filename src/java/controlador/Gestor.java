@@ -16,7 +16,7 @@ import modelo.Usuario;
 public class Gestor {
      
     Connection con;
-    Statement st;
+    PreparedStatement pst;
     ResultSet rs;
     
     
@@ -25,7 +25,7 @@ public class Gestor {
 
     try 
     {   
-      String url = "jdbc:mysql://localhost;databaseName=WS";
+      String url = "jdbc:mysql://localhost:3306/WS?zeroDateTimeBehavior=convertToNull";
       String us = "root";
       String psw = "";
       con = DriverManager.getConnection(url, us, psw);
@@ -48,7 +48,7 @@ public class Gestor {
     
     
     
-    public Usuario getUsuario(int nroDni,int nivelID,String password)  
+    public Usuario getUsuario(int nroDni,int nivelID)  
     {  
         Usuario nuevo = null;
         int dni;
@@ -61,9 +61,12 @@ public class Gestor {
         try
         { 
           abrirConexion();
-          st=con.createStatement();
-          String sql="Select * from usuarios where dni=" + nroDni + "and nivel=" +nivelID +"and pass= "+password ;
-          rs=st.executeQuery(sql);
+          String sql="Select * from usuarios where dni=? and nivel=?";
+          pst=con.prepareStatement(sql);
+          pst.setInt(nroDni, 1);
+          pst.setInt(nivelID, 2);
+          
+          rs=pst.executeQuery(sql);
           if(rs.next())
           { 
             
