@@ -8,6 +8,7 @@ package WebServices;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import modelo.Usuario;
 
 /**
  *
@@ -15,4 +16,13 @@ import javax.jws.WebParam;
  */
 @WebService(serviceName = "WebServiceGestionUsuario")
 public class WebServiceGestionUsuario {
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "ValidarLogin")
+    public Usuario ValidarLogin(@WebParam(name = "dni") int dni, @WebParam(name = "nivelID") int nivelID, @WebParam(name = "pass") String pass) {
+        //TODO write your implementation code here:
+        return null;
+    }
 }

@@ -25,7 +25,7 @@ public class Gestor {
 
     try 
     {   
-      String url = "jdbc:mysql://localhost;databaseName=usuarios";
+      String url = "jdbc:mysql://localhost;databaseName=WS";
       String us = "root";
       String psw = "";
       con = DriverManager.getConnection(url, us, psw);
@@ -48,7 +48,7 @@ public class Gestor {
     
     
     
-    public Usuario getUsuario(int id)  
+    public Usuario getUsuario(int nroDni,int nivelID,String password)  
     {  
         Usuario nuevo = null;
         int dni;
@@ -62,7 +62,7 @@ public class Gestor {
         { 
           abrirConexion();
           st=con.createStatement();
-          String sql="Select * from Socio where id=" +id;
+          String sql="Select * from usuarios where dni=" + nroDni + "and nivel=" +nivelID +"and pass= "+password ;
           rs=st.executeQuery(sql);
           if(rs.next())
           { 
@@ -74,8 +74,7 @@ public class Gestor {
             pass=rs.getString("pass");
           
             nuevo =new Usuario(dni, nom, ape, pass, nivel);
-            
-            
+                 
           }
         }
         catch(SQLException e)
