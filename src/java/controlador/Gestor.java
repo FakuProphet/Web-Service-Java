@@ -16,36 +16,30 @@ import modelo.Usuario;
 public class Gestor {
      
     Connection con;
-    PreparedStatement pst;
+    Statement st;
     ResultSet rs;
     
     
     
-    public void abrirConexion(){
+    public void abrirConexion() {
+        try {
+            
+            String url = "jdbc:mysql://localhost:3306/WS?zeroDateTimeBehavior=convertToNull";
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = DriverManager.getConnection(url, "root", "");
+        } catch (Exception e) {
+            System.out.println("Error en conexión ");
+        }
 
-    try 
-    {   
-      String url = "jdbc:mysql://localhost:3306/WS?zeroDateTimeBehavior=convertToNull";
-      String us = "root";
-      String psw = "";
-      con = DriverManager.getConnection(url, us, psw);
-    } 
-    
-    catch (SQLException e) {
-            System.out.println("Error en la conexion"+e);
+    }
+
+    public void cerrarConexion() {
+        try {
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar conexión: " + e.getMessage());
         }
     }
-    
-    public void cerrarConexion(){
-        try 
-        {
-           con.close();
-        } 
-        catch (SQLException e) {
-            System.out.println("Error al cerrar conexion" +e);
-        }
-    }
-    
     
     
     public Usuario getUsuario(int nroDni,int nivelID)  
@@ -61,12 +55,14 @@ public class Gestor {
         try
         { 
           abrirConexion();
-          String sql="Select * from usuarios where dni=? and nivel=?";
-          pst=con.prepareStatement(sql);
-          pst.setInt(nroDni, 1);
-          pst.setInt(nivelID, 2);
+          /*a corregir esta forma inadecuada de hacer la consulta*/
+          String sql="Select * from usuarios where dni="+nroDni+" and nivel="+nivelID+"";
+        
+          st=con.createStatement();
+          rs=st.executeQuery(sql);    
+          rs=st.executeQuery(sql);
           
-          rs=pst.executeQuery(sql);
+          
           if(rs.next())
           { 
             
