@@ -20,7 +20,7 @@ public class Conexion {
 
     try 
     {   
-      String url = "jdbc:mysql://localhost:3306/WS?zeroDateTimeBehavior=convertToNull";
+      String url = "jdbc:mysql://localhost;databaseName=usuarios";
       String us = "root";
       String psw = "";
       con = DriverManager.getConnection(url, us, psw);
