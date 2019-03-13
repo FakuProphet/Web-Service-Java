@@ -18,7 +18,7 @@ public class Gestor {
     Connection con;
     Statement st;
     ResultSet rs;
-    
+    PreparedStatement pstm;
     
     
     public void abrirConexion() {
@@ -93,7 +93,40 @@ public class Gestor {
         return nuevo; 
     }
     
-    
+     public String addUsuario(int dni,String nombre,String apellido,int nivelID,String pass)
+     {
+         
+        String mensaje = "No se pudo registrar el usuario.";
+        
+        try 
+        {
+            abrirConexion();
+            String q = "INSERT INTO USUARIOS VALUES (?,?,?,?,?)";
+            pstm = con.prepareStatement(q);
+            
+            pstm.setInt(1, dni);
+            pstm.setString(2,nombre);
+            pstm.setString(3,apellido);
+            pstm.setInt(4,nivelID);
+            pstm.setString(5,pass);
+            
+            int resultado = pstm.executeUpdate();
+            
+            pstm.close();
+            con.close();
+            if(resultado>0)
+            {
+                mensaje = "Usuario registrado con éxito.";
+            }
+            
+        } 
+        catch (Exception e) 
+        {
+            System.out.println("Error al realizar el registro: " +e);
+        }
+        return mensaje;
+        
+    }
     
     
 }

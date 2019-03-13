@@ -29,4 +29,13 @@ public class WebServiceGestionUsuario {
         
         return nuevo;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "servicioDeRegistro")
+    public String servicioDeRegistro(@WebParam(name = "doc") int doc, @WebParam(name = "nombre") String nombre, @WebParam(name = "apellido") String apellido, @WebParam(name = "nivel") int nivel, @WebParam(name = "pass") String pass) {
+        //TODO write your implementation code here:
+        return null;
+    }
 }
