@@ -7,6 +7,8 @@ package controlador;
 
 
 import java.sql.*;
+import java.util.ArrayList;
+import modelo.Nivel;
 import modelo.Usuario;
  
 /*
@@ -60,7 +62,7 @@ public class Gestor {
         
           st=con.createStatement();
           rs=st.executeQuery(sql);    
-          rs=st.executeQuery(sql);
+          
           
           
           if(rs.next())
@@ -128,5 +130,52 @@ public class Gestor {
         
     }
     
+    public ArrayList<Nivel> getListadoNiveles()  
+    {  
+        ArrayList<Nivel> listado = new ArrayList<>();
+        Nivel n=null;
+        int id;
+        String des;
+        
+                
+        
+        try
+        { 
+          abrirConexion();
+       
+          String sql="Select * from niveles";
+        
+          st=con.createStatement();
+          rs=st.executeQuery(sql);    
+        
+          
+          
+          while(rs.next())
+          { 
+            id=rs.getInt("id");
+            des=rs.getString("descripcion");
+            n = new Nivel(id,des);
+            listado.add(n);
+          }
+          
+          
+        }
+        catch(SQLException e)
+        { 
+            System.out.println("Error en la consulta:" + e.getMessage());
+        }
+        finally
+        { 
+            try{ 
+                cerrarConexion();
+            }
+            catch(Exception e)
+            { 
+                System.out.println("Error en el cierre de la conexion:" + e.getMessage());
+            }
+        }
+        return nuevo; 
+    }
+     
     
 }
