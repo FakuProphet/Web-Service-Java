@@ -42,14 +42,4 @@ public class WebServiceGestionUsuario {
         return mensaje;
     }
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "listaNiveles")
-    public ArrayList listaNiveles() {
-        
-        Gestor g = new Gestor();
-        ArrayList listado = g.getListadoNiveles();
-        return listado;
-    }
 }
