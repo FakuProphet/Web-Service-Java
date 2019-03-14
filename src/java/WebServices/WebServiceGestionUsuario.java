@@ -6,6 +6,7 @@
 package WebServices;
 
 import controlador.Gestor;
+import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -39,5 +40,14 @@ public class WebServiceGestionUsuario {
         Gestor g = new Gestor();
         String mensaje = g.addUsuario(nuevo);
         return mensaje;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "listaNiveles")
+    public ArrayList operation() {
+        //TODO write your implementation code here:
+        return null;
     }
 }
