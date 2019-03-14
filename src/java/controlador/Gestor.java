@@ -133,6 +133,7 @@ public class Gestor {
     public ArrayList<Nivel> getListadoNiveles()  
     {  
         ArrayList<Nivel> listado = new ArrayList<>();
+        
         Nivel n=null;
         int id;
         String des;
@@ -174,7 +175,7 @@ public class Gestor {
                 System.out.println("Error en el cierre de la conexion:" + e.getMessage());
             }
         }
-        return nuevo; 
+        return listado; 
     }
      
     

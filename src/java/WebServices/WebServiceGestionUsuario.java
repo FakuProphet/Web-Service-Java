@@ -47,7 +47,9 @@ public class WebServiceGestionUsuario {
      */
     @WebMethod(operationName = "listaNiveles")
     public ArrayList operation() {
-        //TODO write your implementation code here:
-        return null;
+        
+        Gestor g = new Gestor();
+        ArrayList listado = g.getListadoNiveles();
+        return listado;
     }
 }
