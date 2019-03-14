@@ -134,7 +134,7 @@ public class Gestor {
     {  
         ArrayList<Nivel> listado = new ArrayList<>();
         
-        Nivel n=null;
+        Nivel n;
         int id;
         String des;
         
