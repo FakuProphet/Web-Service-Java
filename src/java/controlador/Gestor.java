@@ -26,7 +26,6 @@ public class Gestor {
     public void abrirConexion() {
         try 
         {
-            
             String url = "jdbc:mysql://localhost:3306/WS?zeroDateTimeBehavior=convertToNull";
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection(url, "root", "");
@@ -102,7 +101,7 @@ public class Gestor {
         return nuevo; 
     }
     
-     public String addUsuario(Usuario u)
+    public String addUsuario(Usuario u)
      {
          
         String mensaje = "No se pudo registrar el usuario.";
