@@ -24,21 +24,27 @@ public class Gestor {
     
     
     public void abrirConexion() {
-        try {
+        try 
+        {
             
             String url = "jdbc:mysql://localhost:3306/WS?zeroDateTimeBehavior=convertToNull";
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection(url, "root", "");
-        } catch (Exception e) {
-            System.out.println("Error en conexión ");
+        } 
+        catch (Exception e) 
+        {
+            System.out.println("Error en conexión: " + e.getMessage());
         }
 
     }
 
     public void cerrarConexion() {
-        try {
+        try 
+        {
             con.close();
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) 
+        {
             System.out.println("Error al cerrar conexión: " + e.getMessage());
         }
     }
