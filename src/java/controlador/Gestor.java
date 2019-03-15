@@ -178,5 +178,56 @@ public class Gestor {
         return listado; 
     }
      
-    
+    public ArrayList<Usuario> getListadoUsuarios()  
+    {  
+        ArrayList<Usuario> listado = new ArrayList<>();
+        
+        Usuario u;
+        int nroDoc;
+        String ape;
+        String nom;
+        int nivelID;
+        String pass;
+                
+        
+        try
+        { 
+          abrirConexion();
+       
+          String sql="Select * from usuarios";
+        
+          st=con.createStatement();
+          rs=st.executeQuery(sql);    
+        
+          
+          
+          while(rs.next())
+          { 
+            nroDoc=rs.getInt(1);
+            nom=rs.getString(2);
+            ape=rs.getString(3);
+            nivelID = rs.getInt(4);
+            pass = rs.getString(5);
+            u = new Usuario(nroDoc, nom, ape, pass, nivelID);
+            listado.add(u);
+          }
+          
+          
+        }
+        catch(SQLException e)
+        { 
+            System.out.println("Error en la consulta:" + e.getMessage());
+        }
+        finally
+        { 
+            try{ 
+                cerrarConexion();
+            }
+            catch(Exception e)
+            { 
+                System.out.println("Error en el cierre de la conexion:" + e.getMessage());
+            }
+        }
+        return listado; 
+    }
 }
