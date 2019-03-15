@@ -42,4 +42,14 @@ public class WebServiceGestionUsuario {
         return mensaje;
     }
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "OpListadoUsuario")
+    public ArrayList<Usuario> OpListadoUsuario() {
+
+        
+        return null;
+    }
+
 }
