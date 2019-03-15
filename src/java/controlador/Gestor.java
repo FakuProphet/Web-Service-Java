@@ -84,7 +84,8 @@ public class Gestor {
         }
         finally
         { 
-            try{ 
+            try
+            { 
                 cerrarConexion();
             }
             catch(Exception e)
@@ -167,7 +168,8 @@ public class Gestor {
         }
         finally
         { 
-            try{ 
+            try
+            { 
                 cerrarConexion();
             }
             catch(Exception e)
@@ -220,7 +222,8 @@ public class Gestor {
         }
         finally
         { 
-            try{ 
+            try
+            { 
                 cerrarConexion();
             }
             catch(Exception e)
