@@ -47,9 +47,9 @@ public class WebServiceGestionUsuario {
      */
     @WebMethod(operationName = "OpListadoUsuario")
     public ArrayList<Usuario> OpListadoUsuario() {
-
-        
-        return null;
+        Gestor g = new Gestor();
+        ArrayList<Usuario> listadoUsuarios = g.getListadoUsuarios();
+        return listadoUsuarios;
     }
 
 }
