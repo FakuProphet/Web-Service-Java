@@ -7,6 +7,7 @@ package controlador;
 
 
 import java.sql.*;
+import java.sql.CallableStatement;
 import java.util.ArrayList;
 import modelo.Nivel;
 import modelo.Usuario;
@@ -21,6 +22,7 @@ public class Gestor {
     Statement st;
     ResultSet rs;
     PreparedStatement pstm;
+    CallableStatement cst;
     
     
     public void abrirConexion() {
@@ -62,13 +64,11 @@ public class Gestor {
         try
         { 
           abrirConexion();
-          /*a corregir esta forma inadecuada de hacer la consulta*/
-          String sql="Select * from usuarios where dni="+nroDni+" and nivel="+nivelID+"";
-        
-          st=con.createStatement();
-          rs=st.executeQuery(sql);    
-          
-          
+          String sql="{call sp_logueo(?,?)}";
+          cst = con.prepareCall(sql);
+          cst.setInt(1, nroDni);
+          cst.setInt(2, nivelID);
+          rs= cst.executeQuery();
           
           if(rs.next())
           { 
@@ -111,7 +111,6 @@ public class Gestor {
             abrirConexion();
             String q = "INSERT INTO USUARIOS VALUES (?,?,?,?,?)";
             pstm = con.prepareStatement(q);
-            
             pstm.setInt(1, u.getDni());
             pstm.setString(2,u.getNombre());
             pstm.setString(3,u.getApellido());
